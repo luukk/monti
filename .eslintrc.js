@@ -9,7 +9,7 @@ module.exports = {
     },
     plugins: ["html"],
     rules: {
-        "eqeqeq": 2,
+        eqeqeq: 2,
         "no-multi-spaces": 2,
         "callback-return": 2,
         "no-undef": 2,
