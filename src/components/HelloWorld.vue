@@ -17,9 +17,9 @@ export default {
     },
 
     methods: {
-        incrementTotal() {
+    incrementTotal() {
             this.counter += 1;
-            this.$emit("increment"); 
+            this.$emit("increment");
         }
     }
 };

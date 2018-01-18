@@ -1,5 +1,14 @@
-@import 'helpers/mixins';
-@import 'helpers/variables';
+@import "abstracts/variables", "abstracts/functions", "abstracts/mixins", "abstracts/placeholders";
 
-@import 'reset';
-@import 'default';
+@import "base/reset", "base/typography";
+
+@import "layout/navigation",
+ "layout/grid",
+ "layout/header",
+ "layout/footer",
+ "layout/sidebar",
+ "layout/forms";
+
+@import "elements/buttons", "elements/carousel", "elements/cover", "elements/dropdown";
+
+@import "pages/home", "pages/contact";

@@ -12,9 +12,11 @@
     "test": "npm run unit && npm run e2e",
     "lint": "eslint --ext .js,.vue src test/unit/specs test/e2e/specs",
     "build": "node build/build.js",
-    "precommit": "prettier '**/*.js' --config .prettierrc.js --ignore-path .eslintignore --write {{changed}}"
+    "precommit": "prettier '**/*.js' --config .prettierrc.js --write {{changed}}",
+    "memes": "node build/precommit.js"
   },
   "dependencies": {
+    "ramda": "^0.25.0",
     "vue": "^2.5.2",
     "vue-router": "^3.0.1"
   },
@@ -74,7 +76,8 @@
     "postcss-import": "^11.0.0",
     "postcss-loader": "^2.0.8",
     "postcss-url": "^7.3.0",
-    "prettier": "^1.9.2",
+    "prettier": "^1.10.2",
+    "prettier-loader": "^2.0.1",
     "rimraf": "^2.6.0",
     "sass-loader": "^6.0.6",
     "selenium-server": "^3.0.1",

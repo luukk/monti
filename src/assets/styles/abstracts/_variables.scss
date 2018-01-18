@@ -1,0 +1,41 @@
+// -----------------------------------------------------------------------------
+// Colors
+// -----------------------------------------------------------------------------
+
+// -----------------------------------------------------------------------------
+// Typography
+// -----------------------------------------------------------------------------
+
+/// Regular font family
+/// @type List
+$primary-font: "Open Sans", "Helvetica Neue Light", "Helvetica Neue", "Helvetica", "Arial",
+ sans-serif !default;
+
+/// Code (monospace) font family
+/// @type List
+$secondary-font: "Courier New", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Monaco",
+ monospace !default;
+
+$text-font-size: 14px !default;
+$text-font-weight: 400 !default;
+
+//media query breakpoints
+$breakpoints: (
+  "small" : (min-width: 480px),
+  "medium": (min-width: 768px),
+  "large": (min-width: 992px),
+  "huge": (min-width: 1200px)
+ )!default;
+
+$p-font-sizes: (null : 15px, "small" : 16px, "medium" : 17px, "large" : 19px) !default;
+
+// Heading sizes
+$h1-font-sizes: (null : 26px, "small" : 29px, "medium" : 31px) !default;
+
+h1 {
+ // @include font-size($h1-font-sizes);
+}
+
+// -----------------------------------------------------------------------------
+// Buttons
+// -----------------------------------------------------------------------------
