@@ -12,15 +12,14 @@
     "test": "npm run unit && npm run e2e",
     "lint": "eslint --ext .js,.vue src test/unit/specs test/e2e/specs",
     "build": "node build/build.js",
-    "precommit": "prettier '**/*.js' --config .prettierrc.js --write {{changed}}",
-    "memes": "node build/precommit.js"
+    "precommit": "node build/precommit.js"
   },
   "dependencies": {
-    "ramda": "^0.25.0",
     "vue": "^2.5.2",
     "vue-router": "^3.0.1"
   },
   "devDependencies": {
+    "ramda": "^0.25.0",
     "autoprefixer": "^7.1.2",
     "babel-core": "^6.22.1",
     "babel-eslint": "^8.1.2",
