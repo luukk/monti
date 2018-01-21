@@ -1,0 +1,8 @@
+* {
+    box-sizing: border-box;
+}
+
+h1 {
+    @include font-size($h1-font-sizes);
+    color: color($red, dark-red)
+}

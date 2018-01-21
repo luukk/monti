@@ -1,1 +1,3 @@
-
+@function color($color-name, $color-variant:'primary') {
+    @return map-get($color-name, $color-variant);
+}

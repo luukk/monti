@@ -1,14 +1,16 @@
-@import "abstracts/variables", "abstracts/functions", "abstracts/mixins", "abstracts/placeholders";
+@import "abstracts/mixins", "abstracts/variables", "abstracts/functions", "abstracts/placeholders";
 
-@import "base/reset", "base/typography";
+@import "base/reset", "base/typography", "base/default";
 
 @import "layout/navigation",
  "layout/grid",
  "layout/header",
  "layout/footer",
- "layout/sidebar",
- "layout/forms";
+ "layout/sidebar";
 
-@import "elements/buttons", "elements/carousel", "elements/cover", "elements/dropdown";
+@import "elements/buttons",
+"elements/dropdown",
+"elements/forms";
+
 
 @import "pages/home", "pages/contact";

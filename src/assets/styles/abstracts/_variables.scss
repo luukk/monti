@@ -1,6 +1,23 @@
 // -----------------------------------------------------------------------------
 // Colors
 // -----------------------------------------------------------------------------
+$black: #000;
+$white: #FFF;
+$blue: #00608b;
+
+$red: (
+    primary: #ed242a,
+    dark-red: #ff0015
+);
+
+$grey: (
+    primary: #9e9d9e,
+    border-grey: #eeeceb,
+    background-grey: #d5d5d5,
+    background-light-grey: #ebeaeb,
+    dark-grey: #353535,
+    form-grey: #d7e2eb,
+);
 
 // -----------------------------------------------------------------------------
 // Typography
@@ -27,14 +44,16 @@ $breakpoints: (
   "huge": (min-width: 1200px)
  )!default;
 
-$p-font-sizes: (null : 15px, "small" : 16px, "medium" : 17px, "large" : 19px) !default;
+ //Define responsive font sizes
 
-// Heading sizes
-$h1-font-sizes: (null : 26px, "small" : 29px, "medium" : 31px) !default;
+$small: 480px;
+$medium: 768px;
+$large: 992px;
+$huge: 1200px;
 
-h1 {
- // @include font-size($h1-font-sizes);
-}
+$p-font-sizes: (null : 15px, $small : 16px, $medium : 17px, $large : 19px) !default;
+
+$h1-font-sizes: (null : 26px, $small : 29px, $medium : 31px) !default;
 
 // -----------------------------------------------------------------------------
 // Buttons
