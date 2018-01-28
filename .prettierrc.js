@@ -7,7 +7,7 @@ module.exports = {
     },
 
     styles: {
-        write: "**/*.scss",
+        write: "src/**/*.scss",
         parser: "scss",
         printWidth: 100,
         tabWidth: 1,
