@@ -1,6 +1,6 @@
 "use strict";
 const fs = require("fs");
-const { exec, spawn } = require("child_process");
+const { spawn } = require("child_process");
 const ora = require("ora");
 const chalk = require("chalk");
 
