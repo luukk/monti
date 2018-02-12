@@ -1,7 +1,7 @@
 "use strict";
-const chalk = require("chalk");
 const semver = require("semver");
 const packageConfig = require("../package.json");
+const utils = require('./utils');
 const shell = require("shelljs");
 
 function exec(cmd) {
@@ -35,26 +35,18 @@ module.exports = function() {
 
         if (!semver.satisfies(mod.currentVersion, mod.versionRequirement)) {
             warnings.push(
-                mod.name +
-                    ": " +
-                    chalk.red(mod.currentVersion) +
-                    " should be " +
-                    chalk.green(mod.versionRequirement)
+                utils.$log.error(mod.name +": " + mod.currentVersion + " should be " + mod.versionRequirement)
             );
         }
     }
 
     if (warnings.length) {
-        console.log("");
-        console.log(chalk.yellow("To use this template, you must update following to modules:"));
-        console.log();
+        utils.$log.warn("To use this template, you must update following to modules:");
 
         for (let i = 0; i < warnings.length; i++) {
             const warning = warnings[i];
-            console.log("  " + warning);
+            utils.$log.warn(warning)
         }
-
-        console.log();
         process.exit(1);
     }
 };

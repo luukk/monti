@@ -3,6 +3,7 @@ const path = require("path");
 const config = require("../config");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const packageConfig = require("../package.json");
+const bunyan = require('bunyan');
 
 exports.assetsPath = function(_path) {
     const assetsSubDirectory =
@@ -12,6 +13,21 @@ exports.assetsPath = function(_path) {
 
     return path.posix.join(assetsSubDirectory, _path);
 };
+
+exports.$log = bunyan.createLogger({
+    name: 'monti',
+    src: true,
+    streams:[
+        {
+            level: 'info',
+            stream: process.stdout
+        },
+        {
+            level: 'error',
+            path: './logs/monti-error.log'
+        }
+    ]
+})
 
 exports.cssLoaders = function(options) {
     options = options || {};

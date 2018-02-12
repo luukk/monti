@@ -3,12 +3,10 @@
 const { readdirSync, readFileSync, writeFileSync, lstatSync } = require("fs");
 const path = require("path");
 const prettier = require("prettier");
-const chalk = require("chalk");
-const log = require("bunyan").createLogger({ name: "precommit hook" });
-
+const utils = require('./utils');
 const config = require("../.prettierrc");
 
-log.trace("running precommit hook...");
+utils.$log.warn("running precommit hook...");
 
 const formatFiles = ({ write, extensions, options }) =>
     findfiles(write).map(filePath => {
@@ -37,4 +35,4 @@ const checkExtension = (filename, extensions) =>
         })
         .includes(true);
 
-Object.keys(config).map(key => log.info(formatFiles(config[key])));
+Object.keys(config).map(key => utils.$log.info(formatFiles(config[key])));
