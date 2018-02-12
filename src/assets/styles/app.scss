@@ -2,15 +2,10 @@
 
 @import "base/reset", "base/typography", "base/default";
 
-@import "layout/navigation",
- "layout/grid",
- "layout/header",
- "layout/footer",
- "layout/sidebar";
+@import "layout/navigation", "layout/grid", "layout/header", "layout/footer", "layout/sidebar";
 
-@import "elements/buttons",
-"elements/dropdown",
-"elements/forms";
+@import "elements/buttons", "elements/dropdown", "elements/forms";
 
+@import "components/product-list-one", "components/product-list-two";
 
 @import "pages/home", "pages/contact";

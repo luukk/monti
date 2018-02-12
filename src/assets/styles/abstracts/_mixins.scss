@@ -22,39 +22,34 @@
 /// @param {String} $breakpoint - Breakpoint
 /// @requires $breakpoints
 @mixin respond-to($breakpoint) {
-  $raw-query: map-get($breakpoints, $breakpoint);
+ $raw-query: map-get($breakpoints, $breakpoint);
 
-  @if $raw-query {
-    $query: if(
-      type-of($raw-query) == 'string',
-      unquote($raw-query),
-      inspect($raw-query)
-    );
+ @if $raw-query {
+  $query: if(type-of($raw-query) == "string", unquote($raw-query), inspect($raw-query));
 
-    @media #{$query} {
-      @content;
-    }
-  } @else {
-    @error 'No value found for `#{$breakpoint}`. '
-         + 'Please make sure it is defined in `$breakpoints` map.';
+  @media #{$query} {
+   @content;
   }
+ } @else {
+  @error 'No value found for `#{$breakpoint}`. ' + 'Please make sure it is defined in `$breakpoints` map.';
+ }
 }
 
 // Assign element dimensions
 // @param {String} $width - Width
 // @param {String} $height - Height
 @mixin size($width, $height: $width) {
-  width: $width;
-  height: $height;
+ width: $width;
+ height: $height;
 }
 
 // Truncate long texts
 // @param {String} $width - Element Width
 // @param {String} $display - Display property
 @mixin truncate($width: 100%, $display: block) {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  width: $width;
-  display: $display;
+ white-space: nowrap;
+ overflow: hidden;
+ text-overflow: ellipsis;
+ width: $width;
+ display: $display;
 }

@@ -1,11 +1,14 @@
 <template>
   <div id="app">
     <img src="./assets/images/logo.png">
-    <router-view/>
+    <!-- <transition name="slide-right" mode="out-in"> -->
+   <router-view></router-view>
+ <!-- </transition> -->
   </div>
 </template>
 
 <script>
+
 export default {
     name: "app"
 };

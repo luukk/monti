@@ -1,8 +1,33 @@
 * {
-    box-sizing: border-box;
+ box-sizing: border-box;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+ font-weight: $header-font-weight;
+ color: $black;
 }
 
 h1 {
-    @include font-size($h1-font-sizes);
-    color: color($red, dark-red)
+ @include font-size($h1-font-sizes);
+}
+
+h2 {
+ @include font-size($h2-font-sizes);
+ color: $black;
+}
+
+.products {
+ display: flex;
+ flex-direction: column;
+ margin-top: 20px;
+ > li {
+  padding: 20px;
+  margin: 5px 0;
+  background-color: white;
+ }
 }
