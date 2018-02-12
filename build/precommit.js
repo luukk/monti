@@ -1,26 +1,40 @@
 "use strict";
-const fs = require("fs");
-const { spawn } = require("child_process");
-const ora = require("ora");
+
+const { readdirSync, readFileSync, writeFileSync, lstatSync } = require("fs");
+const path = require("path");
+const prettier = require("prettier");
 const chalk = require("chalk");
+const log = require("bunyan").createLogger({ name: "precommit hook" });
 
 const config = require("../.prettierrc");
 
-console.log(chalk.blue("running precommit hook..."));
+log.trace("running precommit hook...");
 
-Object.keys(config).map(key => {
-    const child = spawn("prettier", formatConfig(config[key]));
+const formatFiles = ({ write, extensions, options }) =>
+    findfiles(write).map(filePath => {
+        if (!checkExtension(filePath, extensions)) return;
 
-    child.stdout.on("data", output => console.log(chalk.green(output)));
+        const file = readFileSync(filePath, { encoding: "utf-8" });
+        const formattedFile = prettier.format(file, options);
 
-    child.on("exit", () => console.log(chalk.red(`finished formatting ${key}`)));
-});
+        writeFileSync(filePath, formattedFile, { encoding: "utf-8", flag: "w" });
 
-function formatConfig(config) {
-    return Object.keys(config)
-        .map(value => {
-            let formattedValue = value.replace(/[A-Z]/g, match => `-${match.toLowerCase()}`);
-            return [`--${formattedValue}`, config[value]];
+        return filePath
+    });
+
+const findfiles = write => {
+    if (!lstatSync(write).isDirectory()) return write;
+
+    return readdirSync(write)
+        .map(f => findfiles(path.join(write, f)))
+        .reduce((prev, curr) => prev.concat(curr), []);
+};
+
+const checkExtension = (filename, extensions) =>
+    extensions
+        .map(extension => {
+            return extension == filename.slice(((filename.lastIndexOf(".") - 1) >>> 0) + 1);
         })
-        .reduce((prev, curr) => prev.concat(curr));
-}
+        .includes(true);
+
+Object.keys(config).map(key => log.info(formatFiles(config[key])));
