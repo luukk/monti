@@ -5,6 +5,7 @@
   "author": "luukk",
   "private": true,
   "scripts": {
+    "preinstall": "mkdir -p logs",
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
     "start": "npm run dev",
     "unit": "jest --config test/unit/jest.conf.js --coverage",
