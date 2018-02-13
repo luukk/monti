@@ -1,19 +1,22 @@
-// For authoring Nightwatch tests, see
-// http://nightwatchjs.org/guide#usage
-
 module.exports = {
-  "default e2e tests": function(browser) {
-    // automatically uses dev Server port from /config.index.js
-    // default: http://localhost:8080
-    // see nightwatch.conf.js
+  "render product lists": function(browser) {
     const devServer = browser.globals.devServerURL;
 
     browser
       .url(devServer)
-      .waitForElementVisible("#app", 5000)
-      .assert.elementPresent(".hello")
-      .assert.containsText("h1", "Welcome to Your Vue.js App")
-      .assert.elementCount("img", 1)
+      .assert.containsText("h2", "product list one")
+      .assert.elementPresent(".products > li")
       .end();
-  }
+  },
+  
+  "reducePrice": function(browser) {
+    const devServer = browser.globals.devServerURL;
+
+    browser
+      .url(devServer)
+      .click('.product-list-one button')
+      .pause(2000)
+      .assert.containsText(".product-list-one .products li:nth-child(1) .price", "9.5")
+      .end()
+  },
 };
