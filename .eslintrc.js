@@ -7,7 +7,7 @@ module.exports = {
     env: {
         browser: true
     },
-    plugins: ["html"],
+    plugins: ["html", "promise"],
     rules: {
         "eqeqeq": 2,
         "no-multi-spaces": 2,
