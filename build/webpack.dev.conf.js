@@ -8,7 +8,6 @@ const baseWebpackConfig = require("./webpack.base.conf");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const FriendlyErrorsPlugin = require("friendly-errors-webpack-plugin");
-const portfinder = require("portfinder");
 
 const HOST = process.env.HOST;
 const PORT = process.env.PORT && Number(process.env.PORT);
@@ -37,8 +36,8 @@ const devWebpackConfig = merge(baseWebpackConfig, {
         hot: true,
         contentBase: false, // since we use CopyWebpackPlugin.
         compress: true,
-        host: HOST || config.dev.host,
-        port: PORT || config.dev.port,
+        host: config.dev.host,
+        port: config.dev.port,
         open: config.dev.autoOpenBrowser,
         overlay: config.dev.errorOverlay ? { warnings: false, errors: true } : false,
         publicPath: config.dev.assetsPublicPath,
@@ -68,36 +67,18 @@ const devWebpackConfig = merge(baseWebpackConfig, {
                 to: config.dev.assetsSubDirectory,
                 ignore: [".*"]
             }
-        ])
+        ]),
+        new FriendlyErrorsPlugin({
+            compilationSuccessInfo: {
+                messages: [
+                    `Your application is running here: http://${
+                        config.dev.host
+                    }:${config.dev.port}`
+                ]
+            },
+            onErrors: config.dev.notifyOnErrors ? utils.createNotifierCallback() : undefined
+        })
     ]
 });
 
-module.exports = new Promise((resolve, reject) => {
-    portfinder.basePort = process.env.PORT || config.dev.port;
-    portfinder.getPort((err, port) => {
-        if (err) {
-            reject(err);
-        } else {
-            // publish the new Port, necessary for e2e tests
-            process.env.PORT = port;
-            // add port to devServer config
-            devWebpackConfig.devServer.port = port;
-
-            // Add FriendlyErrorsPlugin
-            devWebpackConfig.plugins.push(
-                new FriendlyErrorsPlugin({
-                    compilationSuccessInfo: {
-                        messages: [
-                            `Your application is running here: http://${
-                                devWebpackConfig.devServer.host
-                            }:${port}`
-                        ]
-                    },
-                    onErrors: config.dev.notifyOnErrors ? utils.createNotifierCallback() : undefined
-                })
-            );
-
-            resolve(devWebpackConfig);
-        }
-    });
-});
+module.exports = devWebpackConfig
