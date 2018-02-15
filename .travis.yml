@@ -1,0 +1,21 @@
+language: node_js
+node_js:
+- 8.9.4
+notifications:
+  email:
+    on_failure: change
+    on_success: change
+branches:
+  only:
+  - master
+env:
+  global:
+  - REMOTE_APP_DIR=
+  - REMOTE_USER=
+  - REMOTE_HOST=
+before_script:
+- chmod 600 deploy && mv deploy ~/.ssh/id_rsa
+script:
+- npm run build
+after_success:
+- "./scripts/deploy.sh"
