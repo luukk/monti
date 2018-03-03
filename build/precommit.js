@@ -8,19 +8,18 @@ const config = require("../.prettierrc");
 
 utils.$log.warn("running precommit hook...");
 
-const formatFiles = ({ write, extensions, options }) =>
-    findfiles(write)
-        .map(filePath => {
-            if (!checkExtension(filePath, extensions)) return;
+const formatFiles = ({ write, extensions, options }) => {
+    return findfiles(write).map(filePath => {
+        if (!checkExtension(filePath, extensions)) return;
 
-            const file = readFileSync(filePath, { encoding: "utf-8" });
-            const formattedFile = prettier.format(file, options);
+        const file = readFileSync(filePath, { encoding: "utf-8" });
+        const formattedFile = prettier.format(file, options);
 
-            writeFileSync(filePath, formattedFile, { encoding: "utf-8", flag: "w" });
+        writeFileSync(filePath, formattedFile, { encoding: "utf-8", flag: "w" });
 
-            return filePath;
-        })
-        .filter(Boolean);
+        return filePath;
+    })
+}
 
 const findfiles = write => {
     if (!lstatSync(write).isDirectory()) return write;
@@ -30,14 +29,18 @@ const findfiles = write => {
         .reduce((prev, curr) => prev.concat(curr), []);
 };
 
-const checkExtension = (filename, extensions) =>
-    extensions
+const checkExtension = (filename, extensions) => {
+    return extensions
         .map(extension => {
-            return extension == filename.slice(((filename.lastIndexOf(".") - 1) >>> 0) + 1);
+            const fileExtension = filename.substr(filename.lastIndexOf('.'));
+
+            return fileExtension == extension
         })
         .includes(true);
+}
 
 Object.keys(config).map(key => {
-    const formattedFiles = formatFiles(config[key]);
-    formattedFiles.map(formattedFile => utils.$log.info(formattedFile));
+    return formatFiles(config[key])
+        .filter(Boolean)
+        .map(formattedFile => utils.$log.info(formattedFile));
 });
