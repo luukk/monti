@@ -9,7 +9,7 @@
                     <span class="price">{{product.price}}</span>
                 </li>
             </ul>
-            <button @click="reducePrice" type="button" name="button">Reduce price</button>
+            <button @click="reducePrice" type="button" name="button">DownDoot price</button>
         </div>
     </div>
 </div>
